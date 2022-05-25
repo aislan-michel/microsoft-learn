@@ -4,4 +4,4 @@ Param(
 
 rmdir $name
 
-Write-Host "App was destroy"
+Write-Host "$name was destroy"
