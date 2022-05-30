@@ -2,7 +2,7 @@
 
 var listOfDirectories = Directory.EnumerateDirectories(path);
 
-Console.WriteLine("list of directories:");
+Console.WriteLine("\nlist of directories:");
 foreach (var dir in listOfDirectories)
 {
     Console.WriteLine(dir);
@@ -36,5 +36,32 @@ IEnumerable<string> FindFiles(string folderName)
 {
     var foundFiles = Directory.EnumerateFiles(folderName, "*", SearchOption.AllDirectories);
 
-    return foundFiles.Where(file => file.EndsWith("sales.json")).ToList();
+    return foundFiles.Where(file => file.EndsWith("sales.json"));
 }
+
+var currentDirectory = Directory.GetCurrentDirectory();
+
+Console.WriteLine($"\ncurrent directory: {currentDirectory}");
+
+var docPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+
+Console.WriteLine($"\nmy documents: {docPath}");
+
+Console.WriteLine($@"
+special char:
+{path}{Path.DirectorySeparatorChar}201
+stores\201 on Windows
+stores/201 on macOS
+");
+
+Console.WriteLine($"path combine: {Path.Combine(path, "201")}"); 
+
+Console.WriteLine($"\nget extension sales.json: {Path.GetExtension("sales.json")}");
+
+var separator = Path.DirectorySeparatorChar;
+
+var fileName = $"{path}{separator}201{separator}sales{separator}sales.json";
+
+var info = new FileInfo(fileName);
+
+Console.WriteLine($"Full Name: {info.FullName}{Environment.NewLine}Directory: {info.Directory}{Environment.NewLine}Extension: {info.Extension}{Environment.NewLine}Create Date: {info.CreationTime}"); 
