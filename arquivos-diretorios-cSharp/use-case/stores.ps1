@@ -1,22 +1,55 @@
+param(
+    [int]
+    [Parameter(Mandatory, HelpMessage = "Please provide a type")]
+    $type
+)
+
+Remove-Item stores
+
 mkdir stores
 
 Set-Location stores
 
-touch sales.json
+if($type -eq 1){
+    
+    touch sales.json
+    touch totals.txt
+    
+    mkdir 201
+    mkdir 202
+    
+    Set-Location 201  
+    
+    touch sales.json
+    touch salestotals.json
+    touch inventory.txt 
+    
+    cd..
 
-touch totals.txt
+    cd..
 
-mkdir 201
+} elseif ($type -eq 2) {
+    touch sales.json
+    touch totals.txt
 
-mkdir 202
+    for ($i = 1; $i -lt 5; $i++) {
+        $name = "20" + $i;
+        mkdir $name
 
-Set-Location 201  
+        Set-Location $name
 
-touch sales.json
+        touch inventory.txt
+        touch sales.json
+        touch salestotals.json
+        
+        cd..
+    }
+}else{
+    Write-Host "provide a valid type"
+}
 
-touch salestotals.json
 
-touch inventory.txt
+
 
 
 

@@ -23,3 +23,18 @@ foreach (var file in allFilesInAllFolders)
 {
     Console.WriteLine(file);
 }
+
+var salesFiles = FindFiles(path);
+
+Console.WriteLine("\nsales.* files");
+foreach (var file in salesFiles)
+{
+    Console.WriteLine(file);
+}
+
+IEnumerable<string> FindFiles(string folderName)
+{
+    var foundFiles = Directory.EnumerateFiles(folderName, "*", SearchOption.AllDirectories);
+
+    return foundFiles.Where(file => file.EndsWith("sales.json")).ToList();
+}
