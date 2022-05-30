@@ -10,8 +10,7 @@ mkdir stores
 
 Set-Location stores
 
-if($type -eq 1){
-    
+if($type -eq 1) {
     touch sales.json
     touch totals.txt
     
@@ -44,7 +43,7 @@ if($type -eq 1){
         
         cd..
     }
-}else{
+} else {
     Write-Host "provide a valid type"
 }
 
